@@ -7,6 +7,7 @@ To get started with TDD, see the `README.md` file in your
 
 class Board
   def self.transform(input)
+      validate_input_length(input)
       copy = input
       copy.each_with_index do |row, row_index|
         row.each_char.with_index do |char, column_index|
@@ -28,6 +29,13 @@ class Board
         end
       end
       copy
+  end
+
+  def self.validate_input_length(input)
+    width = input[0].length
+    input.each do |row|
+      raise ArgumentError if row.length != width
+    end
   end
 
   def self.mine_left?(row, current_index)
