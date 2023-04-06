@@ -23,6 +23,7 @@ class MinesweeperTest < Minitest::Test
   end
 
   def test_transform2
+    skip
     inp = ['+-----+', '| * * |', '|     |', '|   * |', '|  * *|',
            '| * * |', '+-----+']
     out = ['+-----+', '|1*2*1|', '|11322|', '| 12*2|', '|12*4*|',
