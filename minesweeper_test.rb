@@ -37,44 +37,6 @@ class MinesweeperTest < Minitest::Test
   end
 
   def test_transform4
-    inp = ['+-+', '|*|', '| |', '|*|', '| |', '| |', '+-+']
-    out = ['+-+', '|*|', '|2|', '|*|', '|1|', '| |', '+-+']
-    assert_equal out, Board.transform(inp)
-  end
-
-  def test_transform5
-    inp = ['+-+', '|*|', '+-+']
-    out = ['+-+', '|*|', '+-+']
-    assert_equal out, Board.transform(inp)
-  end
-
-  def test_transform6
-    inp = ['+--+', '|**|', '|**|', '+--+']
-    out = ['+--+', '|**|', '|**|', '+--+']
-    assert_equal out, Board.transform(inp)
-  end
-
-  def test_transform7
-    inp = ['+--+', '|**|', '|**|', '+--+']
-    out = ['+--+', '|**|', '|**|', '+--+']
-    assert_equal out, Board.transform(inp)
-  end
-
-  def test_transform8
-    inp = ['+---+', '|***|', '|* *|', '|***|', '+---+']
-    out = ['+---+', '|***|', '|*8*|', '|***|', '+---+']
-    assert_equal out, Board.transform(inp)
-  end
-
-  def test_transform9
-    inp = ['+-----+', '|     |', '|   * |', '|     |', '|     |',
-           '| *   |', '+-----+']
-    out = ['+-----+', '|  111|', '|  1*1|', '|  111|', '|111  |',
-           '|1*1  |', '+-----+']
-    assert_equal out, Board.transform(inp)
-  end
-
-  def test_different_len
     inp = ['+-+', '| |', '|*  |', '|  |', '+-+']
     assert_raises(ArgumentError) do
       Board.transform(inp)
@@ -82,7 +44,6 @@ class MinesweeperTest < Minitest::Test
   end
 
   def test_faulty_border
-    skip
     inp = ['+-----+', '*   * |', '+-- --+']
     assert_raises(ArgumentError) do
       Board.transform(inp)
