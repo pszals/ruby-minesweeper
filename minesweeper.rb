@@ -9,6 +9,7 @@ class Board
   def self.transform(input)
       validate_input_length(input)
       validate_border(input)
+      validate_characters(input)
       copy = input
       copy.each_with_index do |row, row_index|
         row.each_char.with_index do |char, column_index|
@@ -30,6 +31,14 @@ class Board
         end
       end
       copy
+  end
+
+  def self.validate_characters(input)
+    input.each do |row|
+      row.each_char do |char|
+        raise ArgumentError if !!(char =~ /\w/)
+      end
+    end
   end
 
   def self.validate_border(input)
