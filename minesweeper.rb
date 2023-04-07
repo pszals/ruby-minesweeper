@@ -1,4 +1,5 @@
 class Board
+
   MINE = "*"
   BORDER_CORNER = "+"
   BORDER_SIDE = "|"
@@ -10,16 +11,8 @@ class Board
     input.each_with_index do |row, row_index|
       row.each_char.with_index do |char, column_index|
         if char == EMPTY_SPACE
-          mine_count = 0
+          mine_count = check_neighbors(input, row, row_index, column_index)
 
-          mine_count += 1 if mine_left?(row, column_index)
-          mine_count += 1 if mine_top_left?(input, row_index, column_index)
-          mine_count += 1 if mine_up?(input, row_index, column_index)
-          mine_count += 1 if mine_top_right?(input, row_index, column_index)
-          mine_count += 1 if mine_right?(row, column_index)
-          mine_count += 1 if mine_bottom_right?(input, row_index, column_index)
-          mine_count += 1 if mine_down?(input, row_index, column_index)
-          mine_count += 1 if mine_bottom_left?(input, row_index, column_index)
           if mine_count > 0
             input[row_index][column_index] = mine_count.to_s
           end
@@ -27,6 +20,19 @@ class Board
       end
     end
     input
+  end
+
+  def self.check_neighbors(input, row, row_index, column_index)
+    mine_count = 0
+    mine_count += 1 if mine_left?(row, column_index)
+    mine_count += 1 if mine_top_left?(input, row_index, column_index)
+    mine_count += 1 if mine_up?(input, row_index, column_index)
+    mine_count += 1 if mine_top_right?(input, row_index, column_index)
+    mine_count += 1 if mine_right?(row, column_index)
+    mine_count += 1 if mine_bottom_right?(input, row_index, column_index)
+    mine_count += 1 if mine_down?(input, row_index, column_index)
+    mine_count += 1 if mine_bottom_left?(input, row_index, column_index)
+    mine_count
   end
 
   def self.validate_input(input)
